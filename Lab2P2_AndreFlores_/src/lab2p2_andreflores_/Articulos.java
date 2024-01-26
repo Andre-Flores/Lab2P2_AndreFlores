@@ -1,13 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package lab2p2_andreflores_;
 
-/**
- *
- * @author andre
- */
+import java.util.Date;
+
 public class Articulos {
-    
+    String tituloArt;
+    String autorArt;
+    String TemaArt;
+    Date fechaPublicacionArt;
+    boolean accesoenLineaArt;
 }

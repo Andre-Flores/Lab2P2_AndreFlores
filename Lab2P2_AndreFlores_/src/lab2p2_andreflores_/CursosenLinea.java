@@ -4,10 +4,19 @@
  */
 package lab2p2_andreflores_;
 
-/**
- *
- * @author andre
- */
+import java.util.Date;
+
 public class CursosenLinea {
+    String tituloCursos;
+    String instructorCursos;
+    Date duracionenSemanasCursos;
+    String plataformadeEnseniaza;
+
+    public CursosenLinea(String tituloCursos, String instructorCursos, Date duracionenSemanasCursos, String plataformadeEnseniaza) {
+        this.tituloCursos = tituloCursos;
+        this.instructorCursos = instructorCursos;
+        this.duracionenSemanasCursos = duracionenSemanasCursos;
+        this.plataformadeEnseniaza = plataformadeEnseniaza;
+    }
     
 }
