@@ -18,5 +18,42 @@ public class CursosenLinea {
         this.duracionenSemanasCursos = duracionenSemanasCursos;
         this.plataformadeEnseniaza = plataformadeEnseniaza;
     }
+
+    public String getTituloCursos() {
+        return tituloCursos;
+    }
+
+    public String getInstructorCursos() {
+        return instructorCursos;
+    }
+
+    public Date getDuracionenSemanasCursos() {
+        return duracionenSemanasCursos;
+    }
+
+    public String getPlataformadeEnseniaza() {
+        return plataformadeEnseniaza;
+    }
+
+    public void setTituloCursos(String tituloCursos) {
+        this.tituloCursos = tituloCursos;
+    }
+
+    public void setInstructorCursos(String instructorCursos) {
+        this.instructorCursos = instructorCursos;
+    }
+
+    public void setDuracionenSemanasCursos(Date duracionenSemanasCursos) {
+        this.duracionenSemanasCursos = duracionenSemanasCursos;
+    }
+
+    public void setPlataformadeEnseniaza(String plataformadeEnseniaza) {
+        this.plataformadeEnseniaza = plataformadeEnseniaza;
+    }
+
+    @Override
+    public String toString() {
+        return "CursosenLinea{" + "tituloCursos=" + tituloCursos + ", instructorCursos=" + instructorCursos + ", duracionenSemanasCursos=" + duracionenSemanasCursos + ", plataformadeEnseniaza=" + plataformadeEnseniaza + '}';
+    }
     
 }
