@@ -81,7 +81,7 @@ public class Lab2P2_AndreFlores_ {
                 System.out.println("1. Listar Recursos");
             } else if (usuarioActual.getTipoUsuario().equals("profesor")) {
                 System.out.println("1. Listar Recursos\n2. Crear Recurso");
-            } else {
+            } else if (usuarioActual.getTipoUsuario().equals("bibliotecario")){
                 System.out.println("1. Listar Recursos\n2. Crear Recurso\n3. Eliminar Recurso\n4. Modificar Recurso");
             }
 
@@ -94,7 +94,7 @@ public class Lab2P2_AndreFlores_ {
                     listarRecursos(recursos);
                     break;
                 case 2:
-                    if (usuarioActual.getTipoUsuario().equals("profesor")) {
+                    if (usuarioActual.getTipoUsuario().equals("profesor") || usuarioActual.getTipoUsuario().equals("bibliotecario")) {
                         System.out.println("Crear recurso");
                         crearRecurso(recursos, entrada);
                     } else {
@@ -111,6 +111,7 @@ public class Lab2P2_AndreFlores_ {
                 case 4:
                     if (usuarioActual.getTipoUsuario().equals("bibliotecario")) {
                         System.out.println("Modificar recurso");
+                        modificarRecurso(recursos, entrada);
                     } else {
                         System.out.println("Acceso no autorizado.");
                     }
@@ -134,7 +135,7 @@ public class Lab2P2_AndreFlores_ {
         switch (tipoRecurso) {
             case 1:
                 System.out.println("Ingrese el titulo del libro:");
-                entrada.nextLine(); // Limpiar el buffer
+                entrada.nextLine();
                 String tituloLibro = entrada.nextLine();
 
                 System.out.println("Ingrese el autor del libro:");
@@ -154,7 +155,7 @@ public class Lab2P2_AndreFlores_ {
 
             case 2:
                 System.out.println("Ingrese el titulo del articulo:");
-                entrada.nextLine(); // Limpiar el buffer
+                entrada.nextLine();
                 String tituloArticulo = entrada.nextLine();
 
                 System.out.println("Ingrese el autor del articulo:");
@@ -171,7 +172,7 @@ public class Lab2P2_AndreFlores_ {
 
             case 3:
                 System.out.println("Ingrese el titulo del curso en linea:");
-                entrada.nextLine(); // Limpiar el buffer
+                entrada.nextLine();
                 String tituloCurso = entrada.nextLine();
 
                 System.out.println("Ingrese el instructor del curso en linea:");
@@ -180,7 +181,7 @@ public class Lab2P2_AndreFlores_ {
                 System.out.println("Ingrese la duracion en semanas del curso en linea:");
                 int duracionSemanasCurso = entrada.nextInt();
 
-                entrada.nextLine(); // Limpiar el buffer
+                entrada.nextLine();
                 System.out.println("Ingrese la plataforma de enseñanza del curso en linea:");
                 String plataformaEnsenanzaCurso = entrada.nextLine();
 
@@ -189,14 +190,14 @@ public class Lab2P2_AndreFlores_ {
 
             case 4:
                 System.out.println("Ingrese el titulo de la conferencia virtual:");
-                entrada.nextLine(); // Limpiar el buffer
+                entrada.nextLine();
                 String tituloConferencia = entrada.nextLine();
 
                 System.out.println("Ingrese el conferencista de la conferencia virtual:");
                 String conferencistaConferencia = entrada.nextLine();
 
                 System.out.println("Ingrese la duracion de la conferencia virtual:");
-                entrada.nextLine(); // Limpiar el buffer
+                entrada.nextLine();
                 String duracionConferencia = entrada.nextLine();
 
                 System.out.println("Ingrese el enlace de acceso de la conferencia virtual:");
@@ -212,4 +213,119 @@ public class Lab2P2_AndreFlores_ {
 
         System.out.println("Recurso creado exitosamente.");
     }
+
+    private static void modificarRecurso(ArrayList<Object> recursos, Scanner entrada) {
+        if (recursos.isEmpty()) {
+            System.out.println("No hay recursos disponibles para modificar.");
+            return;
+        }
+
+        System.out.println("Ingrese el título del recurso que desea modificar:");
+        entrada.nextLine();
+        String tituloBusqueda = entrada.nextLine();
+
+        boolean encontrado = false;
+
+        for (Object recurso : recursos) {
+            if (recurso instanceof Libro) {
+                Libro libro = (Libro) recurso;
+                if (libro.getTituloLib().equalsIgnoreCase(tituloBusqueda)) {
+                    modificarAtributos(libro, entrada);
+                    System.out.println("Recurso modificado exitosamente.");
+                    encontrado = true;
+                    break;
+                }
+            } else if (recurso instanceof Articulos) {
+                Articulos articulo = (Articulos) recurso;
+                if (articulo.getTituloArt().equalsIgnoreCase(tituloBusqueda)) {
+                    modificarAtributos(articulo, entrada);
+                    System.out.println("Recurso modificado exitosamente.");
+                    encontrado = true;
+                    break;
+                }
+            } else if (recurso instanceof CursosenLinea) {
+                CursosenLinea curso = (CursosenLinea) recurso;
+                if (curso.getTituloCursos().equalsIgnoreCase(tituloBusqueda)) {
+                    modificarAtributos(curso, entrada);
+                    System.out.println("Recurso modificado exitosamente.");
+                    encontrado = true;
+                    break;
+                }
+            } else if (recurso instanceof conferenciasVirtuales) {
+                conferenciasVirtuales conferencia = (conferenciasVirtuales) recurso;
+                if (conferencia.getTituloConf().equalsIgnoreCase(tituloBusqueda)) {
+                    modificarAtributos(conferencia, entrada);
+                    System.out.println("Recurso modificado exitosamente.");
+                    encontrado = true;
+                    break;
+                }
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("No se encontró el recurso con el título proporcionado.");
+        }
+    }
+
+    private static void modificarAtributos(Object recurso, Scanner entrada) {
+        if (recurso instanceof Libro) {
+            Libro libro = (Libro) recurso;
+            System.out.println("Ingrese el nuevo autor del libro:");
+            entrada.nextLine();
+            libro.setAutorLib(entrada.nextLine());
+
+            System.out.println("Ingrese el nuevo titulo del libro:");
+            libro.setTituloLib(entrada.nextLine());
+
+            System.out.println("Ingrese el nuevo genero del libro:");
+            libro.setGeneroLib(entrada.nextLine());
+
+            System.out.println("Ingrese el nuevo ano de publicacion del libro:");
+            libro.setAnioPublicacionLib(entrada.nextLine());
+
+            System.out.println("Ingrese si el libro tiene acceso en linea (true/false):");
+            libro.setAccesoenLineaLib(entrada.nextBoolean());
+
+        } else if (recurso instanceof Articulos) {
+            Articulos articulo = (Articulos) recurso;
+            System.out.println("Ingrese el nuevo autor del articulo:");
+            entrada.nextLine();
+            articulo.setAutorArt(entrada.nextLine());
+
+            System.out.println("Ingrese el nuevo titulo del articulo:");
+            articulo.setTituloArt(entrada.nextLine());
+
+            System.out.println("Ingrese el nuevo tema del articulo:");
+            articulo.setTemaArt(entrada.nextLine());
+
+            System.out.println("Ingrese si el articulo tiene acceso en linea (true/false):");
+            articulo.setAccesoenLineaArt(entrada.nextBoolean());
+
+        } else if (recurso instanceof CursosenLinea) {
+            CursosenLinea curso = (CursosenLinea) recurso;
+            System.out.println("Ingrese el nuevo instructor del curso en linea:");
+            entrada.nextLine();
+            curso.setInstructorCursos(entrada.nextLine());
+
+            System.out.println("Ingrese la nueva duracion en semanas del curso en linea:");
+            curso.setDuracionenSemanasCursos(entrada.nextInt());
+
+            System.out.println("Ingrese la nueva plataforma de ensenanza del curso en linea:");
+            entrada.nextLine();
+            curso.setPlataformadeEnseniaza(entrada.nextLine());
+
+        } else if (recurso instanceof conferenciasVirtuales) {
+            conferenciasVirtuales conferencia = (conferenciasVirtuales) recurso;
+            System.out.println("Ingrese el nuevo conferencista de la conferencia virtual:");
+            entrada.nextLine();
+            conferencia.setConferencista(entrada.nextLine());
+
+            System.out.println("Ingrese la nueva duracion de la conferencia virtual:");
+            conferencia.setDuracion(entrada.nextLine());
+
+            System.out.println("Ingrese el nuevo enlace de acceso de la conferencia virtual:");
+            conferencia.setEnlaceAcceso(entrada.nextLine());
+        }
+    }
+
 }
