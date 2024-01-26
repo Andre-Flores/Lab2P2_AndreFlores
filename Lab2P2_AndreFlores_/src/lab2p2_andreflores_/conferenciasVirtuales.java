@@ -1,9 +1,9 @@
-
 package lab2p2_andreflores_;
 
 import java.util.Date;
 
 public class conferenciasVirtuales {
+
     String tituloConf;
     String conferencista;
     Date fecha;
@@ -62,5 +62,5 @@ public class conferenciasVirtuales {
     public String toString() {
         return "conferenciasVirtuales{" + "tituloConf=" + tituloConf + ", conferencista=" + conferencista + ", fecha=" + fecha + ", duracion=" + duracion + ", enlaceAcceso=" + enlaceAcceso + '}';
     }
-    
+
 }

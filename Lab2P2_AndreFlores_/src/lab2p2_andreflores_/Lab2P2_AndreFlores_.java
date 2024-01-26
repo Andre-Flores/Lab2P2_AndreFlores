@@ -1,6 +1,8 @@
 package lab2p2_andreflores_;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Lab2P2_AndreFlores_ {
@@ -60,6 +62,7 @@ public class Lab2P2_AndreFlores_ {
                     break;
                 case 2:
                     System.out.println("Crear recursos");
+                    crearRecurso(recursos);
                     break;
                 case 3:
                     if (usuarioActual.getTipoUsuario().equals("bibliotecario")) {
@@ -90,17 +93,108 @@ public class Lab2P2_AndreFlores_ {
     }
 
     private static void listarRecursos(ArrayList<Object> recursos) {
-        if (recursos.isEmpty()){
+        if (recursos.isEmpty()) {
             System.out.println("no hay recursos disponibles");
-        }else{
+        } else {
             System.out.println("recursos disponibles:");
             for (Object recurso : recursos) {
                 System.out.println(recurso);
-                
+
             }
         }
-     {
-            
+
+    }
+
+    private static void crearRecurso(ArrayList<Object> recursos) {
+        Scanner entrada = new Scanner(System.in);
+
+        System.out.println("Seleccione el tipo de recurso a crear:");
+        System.out.println("1. Libro\n2. Articulo\n3. Curso en linea\n4. Conferencia Virtual");
+        System.out.print("Ingrese el numero correspondiente al tipo de recurso: ");
+        int tipoRecurso = entrada.nextInt();
+
+        switch (tipoRecurso) {
+            case 1:
+                System.out.println("Ingrese el titulo del libro:");
+                String tituloLibro = entrada.nextLine();
+                tituloLibro = entrada.nextLine();
+
+                System.out.println("Ingrese el autor del libro:");
+                String autorLibro = entrada.nextLine();
+
+                System.out.println("Ingrese el genero del libro:");
+                String generoLibro = entrada.nextLine();
+
+                System.out.println("Ingrese el ano de publicacion del libro:");
+
+                String fechaStr = entrada.nextLine();
+
+                System.out.println("El libro tiene acceso en linea? (true/false):");
+                boolean accesoEnLineaLibro = entrada.nextBoolean();
+
+                recursos.add(new Libro(tituloLibro, autorLibro, generoLibro, autorLibro, accesoEnLineaLibro));
+                break;
+
+            case 2:
+                System.out.println("Ingrese el titulo del articulo:");
+                String tituloArticulo = entrada.nextLine();
+                tituloArticulo = entrada.nextLine();
+
+                System.out.println("Ingrese el autor del articulo:");
+                String autorArticulo = entrada.nextLine();
+
+                System.out.println("Ingrese el tema del articulo:");
+                String temaArticulo = entrada.nextLine();
+
+                Date fechaPublicacionArticulo = new Date();
+
+                System.out.println("El articulo tiene acceso en linea? (true/false):");
+                boolean accesoEnLineaArticulo = entrada.nextBoolean();
+
+                recursos.add(new Articulos(tituloArticulo, autorArticulo, temaArticulo, fechaPublicacionArticulo, accesoEnLineaArticulo));
+                break;
+
+            case 3:
+                System.out.println("Ingrese el titulo del curso en linea:");
+                String tituloCurso = entrada.nextLine();
+                tituloCurso = entrada.nextLine();
+
+                System.out.println("Ingrese el instructor del curso en linea:");
+                String instructorCurso = entrada.nextLine();
+
+                System.out.println("Ingrese la duracion en semanas del curso en linea:");
+                int duracionSemanasCurso = entrada.nextInt();
+
+                System.out.println("Ingrese la plataforma de ensenanza del curso en linea:");
+                String plataformaEnsenanzaCurso = entrada.nextLine();
+
+                recursos.add(new CursosenLinea(tituloCurso, instructorCurso, duracionSemanasCurso, plataformaEnsenanzaCurso));
+                break;
+
+            case 4:
+                System.out.println("Ingrese el titulo de la conferencia virtual:");
+                String tituloConferencia = entrada.nextLine();
+                tituloConferencia = entrada.nextLine();
+
+                System.out.println("Ingrese el conferencista de la conferencia virtual:");
+                String conferencistaConferencia = entrada.nextLine();
+
+                System.out.println("Ingrese la duracion de la conferencia virtual:");
+                String duracionConferencia = entrada.nextLine();
+
+                System.out.println("Ingrese el enlace de acceso de la conferencia virtual:");
+                String enlaceAccesoConferencia = entrada.nextLine();
+
+                Date fechaConferencia = new Date();
+
+                recursos.add(new conferenciasVirtuales(tituloConferencia, conferencistaConferencia, fechaConferencia, duracionConferencia, enlaceAccesoConferencia));
+                break;
+
+            default:
+                System.out.println("Opcion no valida.");
+                return;
         }
+
+        System.out.println("Recurso creado exitosamente.");
     }
 }

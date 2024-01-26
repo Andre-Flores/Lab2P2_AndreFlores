@@ -7,10 +7,10 @@ public class Libro {
     String tituloLib;
     String autorLib;
     String generoLib;
-    Date anioPublicacionLib;
+    String anioPublicacionLib;
     boolean accesoenLineaLib;
 
-    public Libro(String tituloLib, String autorLib, String generoLib, Date anioPublicacionLib, boolean accesoenLineaLib) {
+    public Libro(String tituloLib, String autorLib, String generoLib, String anioPublicacionLib, boolean accesoenLineaLib) {
         this.tituloLib = tituloLib;
         this.autorLib = autorLib;
         this.generoLib = generoLib;
@@ -30,7 +30,7 @@ public class Libro {
         return generoLib;
     }
 
-    public Date getAnioPublicacionLib() {
+    public String getAnioPublicacionLib() {
         return anioPublicacionLib;
     }
 
@@ -50,7 +50,7 @@ public class Libro {
         this.generoLib = generoLib;
     }
 
-    public void setAnioPublicacionLib(Date anioPublicacionLib) {
+    public void setAnioPublicacionLib(String anioPublicacionLib) {
         this.anioPublicacionLib = anioPublicacionLib;
     }
 

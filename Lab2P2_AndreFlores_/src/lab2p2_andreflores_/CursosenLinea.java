@@ -9,10 +9,10 @@ import java.util.Date;
 public class CursosenLinea {
     String tituloCursos;
     String instructorCursos;
-    Date duracionenSemanasCursos;
+    int duracionenSemanasCursos;
     String plataformadeEnseniaza;
 
-    public CursosenLinea(String tituloCursos, String instructorCursos, Date duracionenSemanasCursos, String plataformadeEnseniaza) {
+    public CursosenLinea(String tituloCursos, String instructorCursos, int duracionenSemanasCursos, String plataformadeEnseniaza) {
         this.tituloCursos = tituloCursos;
         this.instructorCursos = instructorCursos;
         this.duracionenSemanasCursos = duracionenSemanasCursos;
@@ -27,7 +27,7 @@ public class CursosenLinea {
         return instructorCursos;
     }
 
-    public Date getDuracionenSemanasCursos() {
+    public int getDuracionenSemanasCursos() {
         return duracionenSemanasCursos;
     }
 
@@ -43,7 +43,7 @@ public class CursosenLinea {
         this.instructorCursos = instructorCursos;
     }
 
-    public void setDuracionenSemanasCursos(Date duracionenSemanasCursos) {
+    public void setDuracionenSemanasCursos(int duracionenSemanasCursos) {
         this.duracionenSemanasCursos = duracionenSemanasCursos;
     }
 
