@@ -55,6 +55,7 @@ public class Lab2P2_AndreFlores_ {
                     System.out.println("Listar recursos");
                     for (Object recurso : recursos) {
                         System.out.println(recurso);
+                        listarRecursos(recursos);
                     }
                     break;
                 case 2:
@@ -86,5 +87,20 @@ public class Lab2P2_AndreFlores_ {
             } // fin switch
 
         } while (opcion != 5);// fin do
+    }
+
+    private static void listarRecursos(ArrayList<Object> recursos) {
+        if (recursos.isEmpty()){
+            System.out.println("no hay recursos disponibles");
+        }else{
+            System.out.println("recursos disponibles:");
+            for (Object recurso : recursos) {
+                System.out.println(recurso);
+                
+            }
+        }
+     {
+            
+        }
     }
 }
