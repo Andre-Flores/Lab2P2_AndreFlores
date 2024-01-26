@@ -31,7 +31,7 @@ public class Lab2P2_AndreFlores_ {
                         System.out.println("Inicio de sesion exitoso como " + usuarioActual.getTipoUsuario());
                         menuPrincipal(usuarioActual, recursos, entrada);
                     } else {
-                        System.out.println("Inicio de sesion fallido. Usuario o contraseña incorrectos.");
+                        System.out.println("Inicio de sesion fallido. Usuario o contrasenia incorrectos.");
                     }
                     break;
                 case 2:
@@ -49,7 +49,7 @@ public class Lab2P2_AndreFlores_ {
         System.out.print("Nombre de usuario: ");
         String nombreUsuario = entrada.nextLine();
         nombreUsuario = entrada.nextLine();
-        System.out.print("Contraseña: ");
+        System.out.print("Contrasenia: ");
         String contrasenia = entrada.nextLine();
 
         for (Usuario usuario : usuarios) {
@@ -81,7 +81,7 @@ public class Lab2P2_AndreFlores_ {
                 System.out.println("1. Listar Recursos");
             } else if (usuarioActual.getTipoUsuario().equals("profesor")) {
                 System.out.println("1. Listar Recursos\n2. Crear Recurso");
-            } else if (usuarioActual.getTipoUsuario().equals("bibliotecario")){
+            } else if (usuarioActual.getTipoUsuario().equals("bibliotecario")) {
                 System.out.println("1. Listar Recursos\n2. Crear Recurso\n3. Eliminar Recurso\n4. Modificar Recurso");
             }
 
@@ -104,6 +104,7 @@ public class Lab2P2_AndreFlores_ {
                 case 3:
                     if (usuarioActual.getTipoUsuario().equals("bibliotecario")) {
                         System.out.println("Eliminar recurso");
+                        eliminarRecurso(recursos, entrada);
                     } else {
                         System.out.println("Acceso no autorizado.");
                     }
@@ -144,7 +145,7 @@ public class Lab2P2_AndreFlores_ {
                 System.out.println("Ingrese el genero del libro:");
                 String generoLibro = entrada.nextLine();
 
-                System.out.println("Ingrese el año de publicacion del libro:");
+                System.out.println("Ingrese el anio de publicacion del libro:");
                 String fechaStr = entrada.nextLine();
 
                 System.out.println("El libro tiene acceso en linea? (true/false):");
@@ -182,7 +183,7 @@ public class Lab2P2_AndreFlores_ {
                 int duracionSemanasCurso = entrada.nextInt();
 
                 entrada.nextLine();
-                System.out.println("Ingrese la plataforma de enseñanza del curso en linea:");
+                System.out.println("Ingrese la plataforma de ensenianza del curso en linea:");
                 String plataformaEnsenanzaCurso = entrada.nextLine();
 
                 recursos.add(new CursosenLinea(tituloCurso, instructorCurso, duracionSemanasCurso, plataformaEnsenanzaCurso));
@@ -325,6 +326,59 @@ public class Lab2P2_AndreFlores_ {
 
             System.out.println("Ingrese el nuevo enlace de acceso de la conferencia virtual:");
             conferencia.setEnlaceAcceso(entrada.nextLine());
+        }
+    }
+
+    private static void eliminarRecurso(ArrayList<Object> recursos, Scanner entrada) {
+        if (recursos.isEmpty()) {
+            System.out.println("No hay recursos disponibles para eliminar.");
+            return;
+        }
+
+        System.out.println("Ingrese el titulo del recurso que desea eliminar:");
+        entrada.nextLine();
+        String tituloBusqueda = entrada.nextLine();
+
+        boolean encontrado = false;
+
+        for (Object recurso : recursos) {
+            if (recurso instanceof Libro) {
+                Libro libro = (Libro) recurso;
+                if (libro.getTituloLib().equalsIgnoreCase(tituloBusqueda)) {
+                    recursos.remove(recurso);
+                    System.out.println("Recurso eliminado exitosamente.");
+                    encontrado = true;
+                    break;
+                }
+            } else if (recurso instanceof Articulos) {
+                Articulos articulo = (Articulos) recurso;
+                if (articulo.getTituloArt().equalsIgnoreCase(tituloBusqueda)) {
+                    recursos.remove(recurso);
+                    System.out.println("Recurso eliminado exitosamente.");
+                    encontrado = true;
+                    break;
+                }
+            } else if (recurso instanceof CursosenLinea) {
+                CursosenLinea curso = (CursosenLinea) recurso;
+                if (curso.getTituloCursos().equalsIgnoreCase(tituloBusqueda)) {
+                    recursos.remove(recurso);
+                    System.out.println("Recurso eliminado exitosamente.");
+                    encontrado = true;
+                    break;
+                }
+            } else if (recurso instanceof conferenciasVirtuales) {
+                conferenciasVirtuales conferencia = (conferenciasVirtuales) recurso;
+                if (conferencia.getTituloConf().equalsIgnoreCase(tituloBusqueda)) {
+                    recursos.remove(recurso);
+                    System.out.println("Recurso eliminado exitosamente.");
+                    encontrado = true;
+                    break;
+                }
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("No se encontro el recurso con el titulo proporcionado.");
         }
     }
 
